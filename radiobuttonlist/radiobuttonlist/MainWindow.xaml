@@ -1,0 +1,25 @@
+﻿<Window x:Class="radiobuttonlist.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:radiobuttonlist"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <!--RadioButtonListを複数画面から参照する場合、App.xamlなどに移動したほうが良い-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/radiobuttonlist;component/RadioButtonList.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <StackPanel>
+        <local:RadioButtonList ItemsSource="{Binding Items}" CheckedItem="{Binding CheckedItem}"
+                               TitleMemberPath="Title" IsCheckedMemberPath="IsChecked"/>
+        <TextBlock Text="{Binding CheckedItemText}" />
+    </StackPanel>
+</Window>
